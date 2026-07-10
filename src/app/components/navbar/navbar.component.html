@@ -1,1 +1,35 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <!-- Título / Logo de la Biblioteca (Apunta a la raíz "") -->
+    <a class="navbar-brand d-flex align-items-center fw-bold text-uppercase tracking-wider" routerLink="">
+      <i class="bi bi-book-half me-2 text-primary"></i> Biblioteca Escolar
+    </a>
+
+    <!-- Botón para pantallas móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Enlaces del menú -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item">
+          <!-- Botón Iniciar Sesión (Apunta a la raíz "" con activación exacta) -->
+          <a class="nav-link px-3 rounded-pill" routerLink="" routerLinkActive="active font-weight-bold bg-primary text-white" [routerLinkActiveOptions]="{exact: true}">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Iniciar Sesión
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 rounded-pill" routerLink="/formulario" routerLinkActive="active font-weight-bold bg-primary text-white">
+            <i class="bi bi-journal-plus me-1"></i> Préstamos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 rounded-pill" routerLink="/about" routerLinkActive="active font-weight-bold bg-primary text-white">
+            <i class="bi bi-info-circle me-1"></i> Acerca de
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
