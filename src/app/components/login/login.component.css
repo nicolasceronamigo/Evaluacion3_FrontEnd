@@ -1,0 +1,30 @@
+/* Contenedor que centra la tarjeta en la pantalla */
+.login-container {
+  min-height: calc(100vh - 56px);
+  background-color: #f8f9fa; /* Gris claro de fondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Tarjeta contenedora de las dos mitades */
+.split-card {
+  max-width: 800px;
+  width: 100%;
+  border: none;
+  overflow: hidden; 
+}
+
+/* Bloque izquierdo: Ahora con la imagen de biblioteca en modo espejo/filtro */
+.left-banner {
+  /* Superponemos el degradado azul oscuro con 90% de opacidad sobre la imagen */
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)), 
+              url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=800') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: white;
+}
