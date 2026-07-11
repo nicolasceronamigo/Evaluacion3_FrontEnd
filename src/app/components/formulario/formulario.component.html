@@ -1,1 +1,74 @@
-<p>formulario works!</p>
+<div class="container mt-4 col-12 col-md-8 col-lg-6">
+
+    <h2>Préstamo de Libro</h2>
+
+    <form #formPrestamo="ngForm" (ngSubmit)="registrarPrestamo(formPrestamo)">
+
+        <!-- Nombre -->
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+
+            <input type="text" class="form-control" name="nombre" required minlength="3"
+                [(ngModel)]="prestamo_ingresado.nombre" #nombreRef="ngModel">
+            <!-- Validaciones de nombre -->
+            <div
+                class="text-danger" *ngIf="nombreRef.errors?.['required'] && nombreRef.touched">
+                El nombre es obligatorio.
+            </div>
+            <div
+                class="text-danger" *ngIf="nombreRef.touched && nombreRef.errors?.['minlength']">
+                El nombre debe tener al menos 3 caracteres.
+            </div>
+        </div>
+
+        <!-- Libro -->
+        <div class="mb-3">
+            <label for="libro" class="form-label">Libro</label>
+
+            <input type="text" class="form-control" name="libro" required minlength="3"
+                [(ngModel)]="prestamo_ingresado.libro" #libroRef="ngModel">
+            <!-- Validaciones de libro -->
+            <div
+                class="text-danger" *ngIf="libroRef.errors?.['required'] && libroRef.touched">
+                Debe ingresar el nombre del libro.
+            </div>
+            <div
+                class="text-danger" *ngIf="libroRef.touched && libroRef.errors?.['minlength']">
+                El libro debe tener al menos 3 caracteres.
+            </div>
+        </div>
+
+        <!-- Fecha -->
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+
+            <input type="date" class="form-control" name="fecha" required [min]="fechaMin" [max]="fechaMax"
+                [(ngModel)]="prestamo_ingresado.fecha" #fechaRef="ngModel">
+            <!-- Validaciones de fecha -->
+            <div class="text-danger" *ngIf="fechaRef.errors?.['required'] && fechaRef.touched">
+                Debe seleccionar una fecha.
+            </div>
+            <div class="text-danger" *ngIf="fechaMenorAlMinimo() && fechaRef.touched">
+                La fecha debe ser al menos una semana después de la fecha actual.
+            </div>
+            <div class="text-danger" *ngIf="fechaMayorAlMaximo() && fechaRef.touched">
+                La fecha no puede superar un mes desde la fecha actual.
+            </div>
+        </div>
+
+        <button
+            type="submit" class="btn btn-primary" [disabled]="formPrestamo.invalid">
+            Registrar préstamo
+        </button>
+
+    </form>
+    <!--Muestra el prestamo guardado en localStorage-->>
+    <div *ngIf="prestamo_guardado">
+        <h5>Préstamo registrado</h5>
+        <ul>
+            <li>Nombre: {{prestamo_guardado["nombre"]}}</li>
+            <li>Libro: {{prestamo_guardado["libro"]}}</li>
+            <li>Fecha: {{prestamo_guardado["fecha"]}}</li>
+        </ul>
+    </div>
+</div>
