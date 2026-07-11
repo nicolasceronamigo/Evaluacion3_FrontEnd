@@ -35,6 +35,8 @@ export class PrestamoComponent {
     //Deja las fechas en formato YYYY-MM-DD
     this.fechaMin = fecha_minima.toISOString().split('T')[0];
     this.fechaMax = fecha_maxima.toISOString().split('T')[0];
+
+    
   }
 
   fechaMenorAlMinimo(){

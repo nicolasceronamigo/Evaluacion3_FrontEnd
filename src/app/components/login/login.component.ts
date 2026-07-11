@@ -1,27 +1,38 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
-import { Router } from '@angular/router'; // 1. Importamos el Router de Angular
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule], 
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  // Almacena el nombre de usuario ingresado en el formulario
   usuario: string = '';
+  
+  // Almacena la contraseña ingresada en el formulario
   contrasena: string = '';
+  
+  // Almacena el mensaje de error para mostrar en la interfaz
+  errorMessage: string = '';
 
-  // 2. Inyectamos el servicio Router en el constructor para poder usarlo
+  // Inicializa el enrutador de Angular para permitir la navegación
   constructor(private router: Router) {}
 
-  iniciarSesion() {
+  // Valida las credenciales de acceso ingresadas por el usuario
+  login() {
     if (this.usuario === 'admin' && this.contrasena === '1234') {
-      // 3. Redirección real a la pantalla del formulario de Nicolás
+      // Limpia el mensaje si el ingreso es exitoso
+      this.errorMessage = '';
+      // Redirige al componente del formulario de préstamos
       this.router.navigate(['/formulario']);
     } else {
-      alert('Credenciales incorrectas. Intenta con admin / 1234');
+      // Define el texto de alerta seguro si los datos son incorrectos
+      this.errorMessage = 'Usuario o contraseña incorrectos. Por favor, intente nuevamente.';
     }
   }
 }
