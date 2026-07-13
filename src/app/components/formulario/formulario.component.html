@@ -12,7 +12,7 @@
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" name="nombre" required minlength="3"
-                [(ngModel)]="prestamo_ingresado.nombre" #nombreRef="ngModel">
+                [(ngModel)]="prestamo_ingresado.nombre" (blur)="limpiar_nombre()" #nombreRef="ngModel">
             
             <!-- Mensajes de validación del nombre -->
             <div class="text-danger small mt-1" *ngIf="nombreRef.errors?.['required'] && nombreRef.touched">
@@ -27,7 +27,7 @@
         <div class="mb-3">
             <label for="libro" class="form-label">Libro</label>
             <input type="text" class="form-control" name="libro" required minlength="3"
-                [(ngModel)]="prestamo_ingresado.libro" #libroRef="ngModel">
+                [(ngModel)]="prestamo_ingresado.libro" (blur)="limpiar_libro()" #libroRef="ngModel">
             
             <!-- Mensajes de validación del libro -->
             <div class="text-danger small mt-1" *ngIf="libroRef.errors?.['required'] && libroRef.touched">

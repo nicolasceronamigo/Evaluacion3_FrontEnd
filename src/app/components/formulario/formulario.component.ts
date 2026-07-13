@@ -23,7 +23,14 @@ export class PrestamoComponent {
   //limites de fecha
   fechaMin: string;
   fechaMax: string;
-
+  //limpiar nombre
+  limpiar_nombre(){
+    this.prestamo_ingresado['nombre'] = this.prestamo_ingresado['nombre'].trim()
+  }
+  //limpiar libro
+  limpiar_libro(){
+    this.prestamo_ingresado['libro'] = this.prestamo_ingresado['libro'].trim()
+  }
   constructor() {
     const fecha_actual = new Date();
     // Mínimo una semana
