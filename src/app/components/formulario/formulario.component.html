@@ -56,21 +56,26 @@
             </div>
         </div>
 
-        <!-- Botón de envío del formulario -->
+        <!-- Botón para enviar el formulario (Se bloquea si hay errores) -->
         <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="formPrestamo.invalid">
             Registrar préstamo
         </button>
 
     </form>
 
-    <!-- Visualización de los datos guardados en el almacenamiento local -->
+    <!-- Sección que muestra el préstamo guardado (Solo aparece si existe el registro) -->
     <div *ngIf="prestamo_guardado" class="mt-4 p-3 bg-light rounded border">
         <h5 class="fw-bold text-center text-secondary mb-2">Préstamo registrado</h5>
         <ul class="list-unstyled mb-0 ms-2">
             <li class="mb-1"><strong>Nombre:</strong> {{prestamo_guardado["nombre"]}}</li>
             <li class="mb-1"><strong>Libro:</strong> {{prestamo_guardado["libro"]}}</li>
-            <li class="mb-0"><strong>Fecha Devolución:</strong> {{prestamo_guardado["fecha"]}}</li>
+            <li class="mb-3"><strong>Fecha Devolución:</strong> {{prestamo_guardado["fecha"]}}</li>
         </ul>
+        
+        <!-- Botón para eliminar los datos del LocalStorage y limpiar la pantalla -->
+        <button class="btn btn-danger w-100 mt-1" (click)="limpiarPrestamo()">
+            Limpiar préstamo registrado
+        </button>
     </div>
 
   </div>

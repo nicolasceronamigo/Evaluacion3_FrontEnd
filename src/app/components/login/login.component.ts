@@ -27,6 +27,10 @@ export class LoginComponent {
   login() {
     if (this.usuario === 'admin' && this.contrasena === '1234') {
       // Limpia el mensaje si el ingreso es exitoso
+
+      //"Llave" de acceso para los componentes protegidos (Formulario y About)
+      localStorage.setItem ('sesion', 'activa');
+
       this.errorMessage = '';
       // Redirige al componente del formulario de préstamos
       this.router.navigate(['/formulario']);
