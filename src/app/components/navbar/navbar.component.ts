@@ -18,5 +18,7 @@ export class NavbarComponent {
     localStorage.removeItem('sesion');
     // Redirigimos al usuario a la pantalla de login
     this.router.navigate(['/login']);
+    //se recarga la página
+    window.location.reload();
   }
 }

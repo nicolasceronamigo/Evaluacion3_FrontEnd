@@ -20,6 +20,9 @@ export class LoginComponent {
   // Almacena el mensaje de error para mostrar en la interfaz
   errorMessage: string = '';
 
+  // Variable para mostrar o esconder el login
+  sesion_iniciada = localStorage.getItem('sesion')
+
   // Inicializa el enrutador de Angular para permitir la navegación
   constructor(private router: Router) {}
 
@@ -29,7 +32,7 @@ export class LoginComponent {
       // Limpia el mensaje si el ingreso es exitoso
 
       //"Llave" de acceso para los componentes protegidos (Formulario y About)
-      localStorage.setItem ('sesion', 'activa');
+      localStorage.setItem ('sesion', this.usuario);
 
       this.errorMessage = '';
       // Redirige al componente del formulario de préstamos
