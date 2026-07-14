@@ -1,52 +1,78 @@
-<div class="container mt-5" style="max-width: 400px;">
-  <div class="card p-4 shadow-sm" *ngIf="!sesion_iniciada">
-    <h2 class="text-center">Iniciar Sesión</h2>
-    <p class="text-muted text-center">Ingresa tus datos para acceder al sistema</p>
+<!-- Contenedor principal alineado al centro -->
+<div class="container mt-5" style="max-width: 450px;">
+
+  <!-- Tarjeta que se muestra si NO se ha iniciado sesión -->
+  <div class="card p-4 shadow border-0 rounded-4 bg-white" *ngIf="!sesion_iniciada">
+    
+    <!-- Encabezado de la tarjeta -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark m-0">Iniciar Sesión</h2>
+      <p class="text-muted small">Ingresa tus datos para acceder al sistema</p>
+    </div>
 
     <!-- Envía el formulario y ejecuta el método de validación -->
     <form (ngSubmit)="login()">
       
+      <!-- Campo de entrada para el Usuario -->
       <div class="mb-3">
-        <label for="usuario" class="form-label">Nombre de Usuario</label>
+        <label for="usuario" class="form-label fw-semibold text-secondary">Nombre de Usuario</label>
         <!-- Enlaza el texto ingresado con la variable usuario -->
         <input 
           type="text" 
           id="usuario" 
           name="usuario" 
           [(ngModel)]="usuario" 
-          class="form-control" 
+          class="form-control bg-light" 
           required
           maxlength="15"
+          placeholder="Ej: admin"
         >
       </div>
 
+      <!-- Campo de entrada para la Contraseña -->
       <div class="mb-3">
-        <label for="contrasena" class="form-label">Contraseña</label>
+        <label for="contrasena" class="form-label fw-semibold text-secondary">Contraseña</label>
         <!-- Enlaza el texto ingresado con la variable contrasena -->
         <input 
           type="password" 
           id="contrasena" 
           name="contrasena" 
           [(ngModel)]="contrasena" 
-          class="form-control" 
+          class="form-control bg-light" 
           required
           maxlength="16"
+          placeholder="••••••••"
         >
       </div>
 
+      <!-- Muestra el mensaje de alerta si la variable contiene un error -->
+      <div class="alert alert-danger text-center py-2 px-3 mt-3 rounded-3" role="alert" *ngIf="errorMessage">
+        <div class="small">{{ errorMessage }}</div>
+      </div>
+
       <!-- Activa el envío del formulario al hacer clic -->
-      <button type="submit" class="btn btn-primary w-100 mt-3">
+      <button type="submit" class="btn btn-primary btn-lg w-100 mt-4 rounded-pill shadow-sm fw-semibold">
         Ingresar al Sistema
       </button>
 
-      <!-- Muestra el mensaje en texto rojo si la variable contiene un error -->
-      <div *ngIf="errorMessage" class="text-danger mt-3 text-center">
-        {{ errorMessage }}
-      </div>
     </form>
   </div>
 
-  <div class="card p-4 shadow-sm" *ngIf="sesion_iniciada">
-    <h2 class="text-center">Haz iniciado sesión como: {{sesion_iniciada}}</h2>
+  <!-- Tarjeta que se muestra si SÍ se ha iniciado sesión (Limpia y centrada) -->
+  <div class="card p-5 shadow border-0 rounded-4 text-center bg-white" *ngIf="sesion_iniciada">
+    
+    <h3 class="fw-bold text-dark mb-4 mt-3 text-center">¡Bienvenido de vuelta!</h3>
+
+    <!-- Muestra el nombre del usuario logueado en pantalla -->
+    <div class="bg-light p-3 rounded-3 mb-4 border text-center">
+      <span class="text-secondary small d-block text-uppercase fw-semibold tracking-wider">Usuario Conectado</span>
+      <strong class="fs-4 text-primary d-block mt-1">{{ sesion_iniciada }}</strong>
+    </div>
+
+    <!-- Botón para ir directamente a la sección de préstamos -->
+    <a routerLink="/formulario" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm d-flex align-items-center justify-content-center fw-semibold">
+      Ir a Préstamos
+    </a>
   </div>
+
 </div>
