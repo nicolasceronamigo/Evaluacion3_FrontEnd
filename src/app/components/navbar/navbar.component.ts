@@ -9,7 +9,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router'; // Impor
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
+  //variable que guarda el estado del menu desplegable
+  menu_colapsado = true;
   // Recibimos el router en el constructor para usarlo en la redirección de abajo
   constructor(private router: Router) {}
 

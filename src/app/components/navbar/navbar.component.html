@@ -6,7 +6,7 @@
     </a>
 
     <!-- Botón para pantallas móviles -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="menu_colapsado=!menu_colapsado" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -14,7 +14,7 @@
     </button>
 
     <!-- Enlaces del menú -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav" [class.show]="!menu_colapsado">
       <ul class="navbar-nav ms-auto gap-2">
         <li class="nav-item">
           <!-- Botón Iniciar Sesión (Apunta a la raíz "" con activación exacta) -->
