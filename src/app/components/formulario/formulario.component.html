@@ -1,0 +1,82 @@
+<!-- Contenedor principal alineado al centro -->
+<div class="container mt-5" style="max-width: 450px;">
+  <!-- Tarjeta contenedora del formulario -->
+  <div class="card p-4 shadow-sm">
+    
+    <h2 class="text-center mb-4">Préstamo de Libro</h2>
+
+    <!-- Formulario de registro -->
+    <form #formPrestamo="ngForm" (ngSubmit)="registrarPrestamo(formPrestamo)">
+
+        <!-- Campo de entrada para el Nombre -->
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" required minlength="3"
+                [(ngModel)]="prestamo_ingresado.nombre" (blur)="limpiar_nombre()" #nombreRef="ngModel">
+            
+            <!-- Mensajes de validación del nombre -->
+            <div class="text-danger small mt-1" *ngIf="nombreRef.errors?.['required'] && nombreRef.touched">
+                El nombre es obligatorio.
+            </div>
+            <div class="text-danger small mt-1" *ngIf="nombreRef.touched && nombreRef.errors?.['minlength']">
+                El nombre debe tener al menos 3 caracteres.
+            </div>
+        </div>
+
+        <!-- Campo de entrada para el Libro -->
+        <div class="mb-3">
+            <label for="libro" class="form-label">Libro</label>
+            <input type="text" class="form-control" name="libro" required minlength="3"
+                [(ngModel)]="prestamo_ingresado.libro" (blur)="limpiar_libro()" #libroRef="ngModel">
+            
+            <!-- Mensajes de validación del libro -->
+            <div class="text-danger small mt-1" *ngIf="libroRef.errors?.['required'] && libroRef.touched">
+                Debe ingresar el nombre del libro.
+            </div>
+            <div class="text-danger small mt-1" *ngIf="libroRef.touched && libroRef.errors?.['minlength']">
+                El libro debe tener al menos 3 caracteres.
+            </div>
+        </div>
+
+        <!-- Campo de entrada para la Fecha -->
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha Devolución</label>
+            <input type="date" class="form-control" name="fecha" required [min]="fechaMin" [max]="fechaMax"
+                [(ngModel)]="prestamo_ingresado.fecha" #fechaRef="ngModel">
+            
+            <!-- Mensajes de validación de la fecha -->
+            <div class="text-danger small mt-1" *ngIf="fechaRef.errors?.['required'] && fechaRef.touched">
+                Debe seleccionar una fecha.
+            </div>
+            <div class="text-danger small mt-1" *ngIf="fechaMenorAlMinimo() && fechaRef.touched">
+                La fecha debe ser al menos una semana después de la fecha actual.
+            </div>
+            <div class="text-danger small mt-1" *ngIf="fechaMayorAlMaximo() && fechaRef.touched">
+                La fecha no puede superar un mes desde la fecha actual.
+            </div>
+        </div>
+
+        <!-- Botón para enviar el formulario (Se bloquea si hay errores) -->
+        <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="formPrestamo.invalid">
+            Registrar préstamo
+        </button>
+
+    </form>
+
+    <!-- Sección que muestra el préstamo guardado (Solo aparece si existe el registro) -->
+    <div *ngIf="prestamo_guardado" class="mt-4 p-3 bg-light rounded border">
+        <h5 class="fw-bold text-center text-secondary mb-2">Préstamo registrado</h5>
+        <ul class="list-unstyled mb-0 ms-2">
+            <li class="mb-1"><strong>Nombre:</strong> {{prestamo_guardado["nombre"]}}</li>
+            <li class="mb-1"><strong>Libro:</strong> {{prestamo_guardado["libro"]}}</li>
+            <li class="mb-3"><strong>Fecha Devolución:</strong> {{prestamo_guardado["fecha"]}}</li>
+        </ul>
+        
+        <!-- Botón para eliminar los datos del LocalStorage y limpiar la pantalla -->
+        <button class="btn btn-danger w-100 mt-1" (click)="limpiarPrestamo()">
+            Limpiar préstamo registrado
+        </button>
+    </div>
+
+  </div>
+</div>
